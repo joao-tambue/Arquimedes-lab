@@ -50,7 +50,7 @@ const FloatingMenu: React.FC = () => {
 
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-14 h-14 bg-blue-600 text-white rounded-full shadow-xl text-3xl hover:bg-blue-700 transition-all duration-300 flex items-center justify-center"
+        className="w-14 h-14 bg-black text-white rounded-full shadow-xl text-3xl hover:bg-gray-950 transition-all duration-300 flex items-center justify-center"
         aria-label="Toggle menu"
       >
         {isOpen ? '×' : '+'}

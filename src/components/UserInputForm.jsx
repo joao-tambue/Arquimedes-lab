@@ -30,7 +30,7 @@ export default function UserInputForm({ onCalculate }) {
   return (
     <form
   onSubmit={handleSubmit}
-  className="bg-black border-4 rounded-xl shadow-lg p-6 max-w-xl mx-auto space-y-4 w-full"
+  className="bg-[#3d3d4d] p-6 rounded-md shadow max-w-xl mx-auto space-y-4 w-full"
 >
   <h2 className="text-xl font-semibold text-white text-center">
     Entradas da Simulação
