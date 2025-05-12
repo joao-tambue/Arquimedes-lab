@@ -28,88 +28,97 @@ export default function UserInputForm({ onCalculate }) {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="bg-[#3f3f46] p-6 rounded-md shadow max-w-xl mx-auto space-y-4"
+<form
+  onSubmit={handleSubmit}
+  className="bg-[#3f3f46] p-6 rounded-md shadow max-w-xl mx-auto space-y-4 w-full"
+>
+  <h2 className="text-xl font-semibold text-white text-center">
+    Entradas da Simulação
+  </h2>
+
+  {/* Líquido */}
+  <div>
+    <label className="block mb-1 font-medium text-white">Líquido</label>
+    <select
+      className="w-full p-2 rounded border"
+      value={liquid}
+      onChange={(e) => setLiquid(e.target.value)}
     >
-      <h2 className="text-xl font-semibold text-white text-center">Entradas da Simulação</h2>
+      {LIQUIDS.map((l) => (
+        <option key={l.name} value={l.name}>
+          {l.name}
+        </option>
+      ))}
+    </select>
+  </div>
 
-      {/* Líquido */}
-      <div>
-        <label className="block mb-1 font-medium text-white">Líquido</label>
-        <select
-          className="w-full p-2 rounded border"
-          value={liquid}
-          onChange={(e) => setLiquid(e.target.value)}
-        >
-          {LIQUIDS.map((l) => (
-            <option key={l.name} value={l.name}>
-              {l.name}
-            </option>
-          ))}
-        </select>
-      </div>
+  {/* Densidade personalizada */}
+  {liquid === "Outro" && (
+    <div>
+      <label className="block mb-1 font-medium text-white">
+        Densidade personalizada (kg/m³)
+      </label>
+      <input
+        type="number"
+        className="w-full p-2 rounded-3xl border"
+        value={customDensity}
+        onChange={(e) => setCustomDensity(e.target.value)}
+        required
+      />
+    </div>
+  )}
 
-      {/* Densidade personalizada */}
-      {liquid === "Outro" && (
-        <div>
-          <label className="block mb-1 font-medium">Densidade personalizada (kg/m³)</label>
-          <input
-            type="number"
-            className="w-full p-2 rounded border"
-            value={customDensity}
-            onChange={(e) => setCustomDensity(e.target.value)}
-            required
-          />
-        </div>
-      )}
+  {/* Massa */}
+  <div>
+    <label className="block mb-1 font-medium text-white">
+      Massa do corpo (kg)
+    </label>
+    <input
+      type="number"
+      className="w-full p-2 rounded-3xl border"
+      value={mass}
+      onChange={(e) => setMass(e.target.value)}
+      required
+    />
+  </div>
 
-      {/* Massa */}
-      <div>
-        <label className="block mb-1 font-medium text-white">Massa do corpo (kg)</label>
-        <input
-          type="number"
-          className="w-full p-2 rounded border"
-          value={mass}
-          onChange={(e) => setMass(e.target.value)}
-          required
-        />
-      </div>
+  <div className="w-full flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+    {/* Volume Total */}
+    <div className="w-full sm:w-1/2">
+      <label className="block mb-1 font-medium text-white">
+        Volume total do corpo (m³)
+      </label>
+      <input
+        type="number"
+        className="w-full p-2 rounded-3xl border"
+        value={volumeTotal}
+        onChange={(e) => setVolumeTotal(e.target.value)}
+        required
+      />
+    </div>
 
-      <div className="w-full flex justify-between items-center ">
+    {/* Volume Submerso */}
+    <div className="w-full sm:w-1/2">
+      <label className="block mb-1 font-medium text-white">
+        Volume submerso (m³)
+      </label>
+      <input
+        type="number"
+        className="w-full p-2 rounded-3xl border"
+        value={volumeSubmerso}
+        onChange={(e) => setVolumeSubmerso(e.target.value)}
+        required
+      />
+    </div>
+  </div>
 
-      {/* Volume Total */}
-      <div>
-        <label className="block mb-1 font-medium text-white">Volume total do corpo (m³)</label>
-        <input
-          type="number"
-          className="w-[250px] p-2 rounded border"
-          value={volumeTotal}
-          onChange={(e) => setVolumeTotal(e.target.value)}
-          required
-        />
-      </div>
+  <button
+    type="submit"
+    className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-3xl w-full mt-2 h-[50px] font-semibold"
+  >
+    Calcular
+  </button>
+</form>
 
-      {/* Volume Submerso */}
-      <div className="">
-        <label className="block mb-1 font-medium text-white">Volume submerso (m³)</label>
-        <input
-          type="number"
-          className="w-[250px] p-2 rounded border"
-          value={volumeSubmerso}
-          onChange={(e) => setVolumeSubmerso(e.target.value)}
-          required
-        />
-      </div>
-
-      </div>
-
-      <button
-        type="submit"
-        className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded w-full mt-2 h-[50px] font-semibold"
-      >
-        Calcular
-      </button>
-    </form>
   );
 }
